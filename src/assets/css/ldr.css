@@ -91,6 +91,11 @@ body {
 
 main {
   display: block;
+}
+
+/* Every page brings its own wrapper, so a full-bleed band (the home hero)
+   can sit outside it. */
+.page {
   padding-block: var(--ldr-space-5) var(--ldr-space-6);
 }
 
@@ -394,7 +399,6 @@ figcaption {
   margin: 0 0 var(--ldr-space-2);
 }
 
-
 .lead {
   font-style: italic;
   color: var(--ldr-ink-soft);
@@ -587,13 +591,17 @@ figcaption {
   font-size: 1.4rem;
 }
 
+/* Forest, not the by-level maple. A listing repeats one heading level many
+   times, and colouring each entry maple turns "one deliberate red mark per
+   view" into a wall of red. These are links first, so they take the link
+   colour and keep maple for the hover. */
 .post-list h3 a {
-  color: var(--ldr-maple);
+  color: var(--ldr-forest);
   text-decoration: none;
 }
 
 .post-list h3 a:hover {
-  color: var(--ldr-forest);
+  color: var(--ldr-maple);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -654,17 +662,25 @@ figcaption {
   content: none;
 }
 
-.tag-cards h2 {
+/* Heading level varies by context (h2 on /tags/, h3 under a section
+   heading on the home page), so the component sets the colour itself
+   rather than inheriting the by-level rule. Same reason as .post-list. */
+.tag-cards h2,
+.tag-cards h3 {
   margin: 0 0 var(--ldr-space-1);
   font-size: 1.4rem;
+  color: var(--ldr-forest);
 }
 
-.tag-cards h2 a {
+.tag-cards h2 a,
+.tag-cards h3 a {
   text-decoration: none;
   color: inherit;
 }
 
-.tag-cards h2 a:hover {
+.tag-cards h2 a:hover,
+.tag-cards h3 a:hover {
+  color: var(--ldr-maple);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -681,7 +697,19 @@ figcaption {
   margin-bottom: var(--ldr-space-4);
 }
 
-.post-body {
+/* The measure applies to the text, not to the column: constraining
+   .post-body itself would squeeze code blocks and figures to 65ch too, and
+   a wide line of code would then scroll inside a needlessly narrow panel. */
+.post-body > p,
+.post-body > ul,
+.post-body > ol,
+.post-body > h2,
+.post-body > h3,
+.post-body > h4,
+.post-body > h5,
+.post-body > h6,
+.post-body > blockquote,
+.post-body > hr {
   max-width: var(--ldr-measure);
 }
 

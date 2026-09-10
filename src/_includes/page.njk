@@ -5,6 +5,7 @@ layout: base.njk
   A static page: heading, optional lead, then prose on the reading measure.
   Front matter must come first in the file; see post.njk.
 #}
+<div class="wrap page">
 <article class="prose">
   <header>
     {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
@@ -13,3 +14,4 @@ layout: base.njk
   </header>
   {{ content | safe }}
 </article>
+</div>

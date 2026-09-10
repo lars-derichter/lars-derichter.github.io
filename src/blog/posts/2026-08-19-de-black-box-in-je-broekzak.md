@@ -20,7 +20,7 @@ elk mogelijk volgend stukje tekst is. Daarna kiest het er een. En dan opnieuw.
 
 ```python
 # Sterk vereenvoudigd, maar dit is de kern.
-tokens = tokenize("De hoofdstad van Belgie is")
+tokens = tokenize("De hoofdstad van België is")
 while not klaar(tokens):
     kansen = model(tokens)          # kans per mogelijk vervolg
     volgende = kies(kansen, temp=0.7)

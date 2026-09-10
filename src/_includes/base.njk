@@ -6,12 +6,15 @@
   <body>
     <a class="skip-link" href="#inhoud">Naar de inhoud</a>
     {% include "partials/masthead.njk" %}
-    {% block hero %}{% endblock %}
-    <main id="inhoud">
-      <div class="wrap">
-        {% block content %}{{ content | safe }}{% endblock %}
-      </div>
-    </main>
+    {#
+      No wrapper here, and no {% block %}: Eleventy chains layouts by handing
+      the child's rendered output to the parent as `content`, so Nunjucks
+      block inheritance does not apply across the chain and a page could not
+      place anything outside a wrapper defined here. Each page brings its own
+      <div class="wrap page">, which lets the home page run a full-bleed hero
+      band before its wrapped content.
+    #}
+    <main id="inhoud">{{ content | safe }}</main>
     {% include "partials/footer.njk" %}
   </body>
 </html>

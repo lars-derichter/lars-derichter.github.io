@@ -12,7 +12,7 @@ eleventyComputed:
   title: "{{ tag.label }}"
   description: "{{ tag.description }}"
 ---
-{% block content %}
+<div class="wrap page">
   <div class="prose">
     <p class="eyebrow">Onderwerp</p>
     <h1 class="ruled">{{ tag.label }}</h1>
@@ -24,4 +24,4 @@ eleventyComputed:
   {% include "partials/post-list.njk" %}
 
   <p><a href="/tags/">Alle onderwerpen</a></p>
-{% endblock %}
+</div>

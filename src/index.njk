@@ -3,23 +3,22 @@ layout: base.njk
 title: Avonturen in AI-Land
 eleventyNavigation: false
 ---
-{% block hero %}
-  <section class="hero">
-    <div class="wrap hero__inner">
-      <div class="hero__text">
-        <p class="eyebrow">Lars De Richter</p>
-        <h1>Avonturen in AI-Land</h1>
-        <p class="lead">{{ site.description }}</p>
-      </div>
-      <div class="hero__mark">
-        {% set size = 120 %}
-        {% include "partials/mark.njk" %}
-      </div>
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow">Lars De Richter</p>
+      <h1>Avonturen in AI-Land</h1>
+      <p class="lead">{{ site.description }}</p>
     </div>
-  </section>
-{% endblock %}
+    <div class="hero__mark">
+      {% set size = 120 %}
+      {% include "partials/mark.njk" %}
+    </div>
+  </div>
+</section>
 
-{% block content %}
+<div class="wrap page">
+
   <h2 class="ruled">Recente berichten</h2>
   {% set posts = collections.posts | head(5) %}
   {% include "partials/post-list.njk" %}
@@ -32,9 +31,9 @@ eleventyNavigation: false
   <ul class="tag-cards">
     {% for tag in topics %}
       <li>
-        <h2><a href="/tags/{{ tag.slug }}/">{{ tag.label }}</a></h2>
+        <h3><a href="/tags/{{ tag.slug }}/">{{ tag.label }}</a></h3>
         <p>{{ tag.description }}</p>
       </li>
     {% endfor %}
   </ul>
-{% endblock %}
+</div>
