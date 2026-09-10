@@ -1,0 +1,62 @@
+# Build the Eleventy site and publish it to GitHub Pages.
+#
+# This is the user-pages repository (lars-derichter.github.io), so the site
+# serves from the domain root and needs no --pathprefix. A project repo
+# would need one; see docs/getting-started.md.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time, but never cancel one that is already running: a
+# publish killed halfway leaves the site unpublished, and every later push
+# then deploys successfully to a site that serves a 404.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # Publishing requires Settings > Pages > Source set to "GitHub Actions".
+  # Until it is, configure-pages fails. Running it here first turns that
+  # into a skipped run rather than a red build on every push.
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.pages.outcome == 'success' }}
+    steps:
+      - id: pages
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+
+  build:
+    needs: check
+    if: needs.check.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
