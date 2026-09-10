@@ -1,10 +1,14 @@
-{#
-  A blog post. The date sits above the title as the eyebrow, in sage:
-  it labels the content rather than kicking off a section.
-#}
 ---
 layout: base.njk
 ---
+{#
+  A blog post. The date sits above the title as the eyebrow, in sage:
+  it labels the content rather than kicking off a section.
+
+  Front matter must be the very first thing in the file: anything above it,
+  a template comment included, stops it being parsed and the layout is
+  silently never applied.
+#}
 <article>
   <header class="post-header">
     <p class="eyebrow eyebrow--sage">

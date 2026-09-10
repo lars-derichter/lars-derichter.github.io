@@ -1,9 +1,10 @@
-{#
-  A static page: heading, optional lead, then prose on the reading measure.
-#}
 ---
 layout: base.njk
 ---
+{#
+  A static page: heading, optional lead, then prose on the reading measure.
+  Front matter must come first in the file; see post.njk.
+#}
 <article class="prose">
   <header>
     {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
