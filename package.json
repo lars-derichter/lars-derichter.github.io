@@ -1,0 +1,31 @@
+{
+  "name": "lars-derichter.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Persoonlijke site en blog van Lars De Richter, gebouwd met Eleventy.",
+  "author": "Lars De Richter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lars-derichter/lars-derichter.github.io.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "markdown-it-anchor": "^9.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
+}

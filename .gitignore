@@ -1,0 +1,19 @@
+# Build output
+_site/
+
+# Dependencies
+node_modules/
+
+# Eleventy
+.cache/
+.eleventy.cache/
+
+# Logs
+npm-debug.log*
+*.log
+
+# Editor / OS
+.DS_Store
+._*
+.vscode/
+.idea/

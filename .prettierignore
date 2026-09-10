@@ -1,0 +1,7 @@
+_site/
+node_modules/
+package-lock.json
+
+# Prettier's HTML parser rewraps Nunjucks tags into invalid template syntax.
+# Templates are formatted by hand; the .editorconfig rules still apply.
+*.njk
