@@ -1,0 +1,178 @@
+/*
+ * ldr theme — code.
+ *
+ * A PrismJS colour theme built from the same values as the slide theme's
+ * Shiki theme (ldr-slidev-theme/setup/shiki.ts), so a code block reads the
+ * same on the blog as on a slide: forest keywords, maple strings, ochre
+ * numbers, muted italic comments, on the panel ground with a sage spine.
+ */
+
+/* Two colours that live only in code and have no palette token: the
+   sage-ink used for type names, and the muted grey for punctuation. */
+:root {
+  --ldr-code-type: #5e6e58;
+  --ldr-code-punct: #6e685b;
+  --ldr-code-comment: #9a917c;
+  --ldr-code-linenum: #b7ac90;
+}
+
+pre[class*='language-'],
+code[class*='language-'] {
+  font-family: var(--ldr-mono);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--ldr-ink);
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  hyphens: none;
+  background: none;
+  text-shadow: none;
+}
+
+pre[class*='language-'] {
+  background: var(--ldr-panel);
+  border: 1px solid var(--ldr-rule);
+  border-left: 3px solid var(--ldr-sage);
+  border-radius: 4px;
+  padding: 1.1em 1.3em;
+  margin: var(--ldr-space-4) 0;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Inline code: the panel ground, forest-deep text, the smaller radius. */
+:not(pre) > code {
+  font-family: var(--ldr-mono);
+  background: var(--ldr-panel);
+  color: var(--ldr-forest-deep);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+
+/* Tokens ------------------------------------------------------------------ */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--ldr-code-comment);
+  font-style: italic;
+}
+
+.token.punctuation,
+.token.operator,
+.token.entity {
+  color: var(--ldr-code-punct);
+}
+
+.token.keyword,
+.token.atrule,
+.token.rule,
+.token.important,
+.token.selector,
+.token.tag {
+  color: var(--ldr-forest);
+  font-weight: 700;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.inserted {
+  color: var(--ldr-maple);
+}
+
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol {
+  color: var(--ldr-ochre);
+}
+
+.token.class-name,
+.token.builtin,
+.token.namespace {
+  color: var(--ldr-code-type);
+}
+
+.token.function,
+.token.variable,
+.token.parameter {
+  color: var(--ldr-ink);
+}
+
+.token.property,
+.token.attr-name {
+  color: var(--ldr-forest-deep);
+}
+
+.token.deleted {
+  color: var(--ldr-maple);
+  text-decoration: line-through;
+}
+
+.token.url,
+.token.link {
+  color: var(--ldr-forest);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.token.bold {
+  font-weight: 700;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.namespace {
+  opacity: 0.8;
+}
+
+/* Eleventy's plugin adds these for ```js/1,3-5 line highlighting. */
+.highlight-line {
+  display: block;
+  padding-inline: 1.3em;
+  margin-inline: -1.3em;
+}
+
+.highlight-line-active {
+  background: rgba(126, 154, 124, 0.18);
+  border-left: 2px solid var(--ldr-sage);
+  margin-left: calc(-1.3em - 2px);
+  padding-left: calc(1.3em - 0px);
+}
+
+.highlight-line-add {
+  background: rgba(56, 84, 62, 0.12);
+}
+
+.highlight-line-remove {
+  background: rgba(158, 59, 45, 0.12);
+}
+
+/* Line numbers, when a block opts in with the plugin's numbering. */
+pre[class*='language-'] .line-number::before {
+  content: attr(data-line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 1.4em;
+  text-align: right;
+  color: var(--ldr-code-linenum);
+  user-select: none;
+}
+
+@media print {
+  pre[class*='language-'] {
+    background: none;
+    border-color: #999;
+    white-space: pre-wrap;
+  }
+}

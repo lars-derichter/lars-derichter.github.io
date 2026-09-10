@@ -1,0 +1,14 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <span>&copy; {{ helpers.year }} {{ site.author.name }}</span>
+    <span class="site-footer__mark">
+      {% set size = 22 %}
+      {% include "partials/mark.njk" %}
+    </span>
+    <span>
+      <a href="/feed.xml">RSS</a>
+      <span class="meta__sep" aria-hidden="true">·</span>
+      <a href="/over-deze-site/">Over deze site</a>
+    </span>
+  </div>
+</footer>

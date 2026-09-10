@@ -1,0 +1,33 @@
+{#
+  Renders a list of posts. Expects `posts` (a collection array). Set
+  `showTags` to false to leave the tag row out.
+#}
+{% if posts.length %}
+  <ol class="post-list">
+    {% for post in posts %}
+      <li>
+        <p class="meta">
+          <time datetime="{{ post.date | htmlDatum }}">{{ post.date | datumNl }}</time>
+          <span class="meta__sep" aria-hidden="true">·</span>
+          {{ post.templateContent | leestijd }} min lezen
+        </p>
+        <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        {% if post.data.description %}
+          <p>{{ post.data.description }}</p>
+        {% endif %}
+        {% if showTags !== false %}
+          {% set tagSlugs = post.data.tags | tagsVanPost %}
+          {% if tagSlugs.length %}
+            <ul class="taglist">
+              {% for slug in tagSlugs %}
+                <li><a class="tag" href="/tags/{{ slug }}/">{{ slug | tagLabel }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+{% else %}
+  <p class="empty">Hier staat nog niets. Binnenkort meer.</p>
+{% endif %}

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include "partials/head.njk" %}
+  </head>
+  <body>
+    <a class="skip-link" href="#inhoud">Naar de inhoud</a>
+    {% include "partials/masthead.njk" %}
+    {% block hero %}{% endblock %}
+    <main id="inhoud">
+      <div class="wrap">
+        {% block content %}{{ content | safe }}{% endblock %}
+      </div>
+    </main>
+    {% include "partials/footer.njk" %}
+  </body>
+</html>

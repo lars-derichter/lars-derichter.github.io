@@ -1,0 +1,51 @@
+{#
+  A blog post. The date sits above the title as the eyebrow, in sage:
+  it labels the content rather than kicking off a section.
+#}
+---
+layout: base.njk
+---
+<article>
+  <header class="post-header">
+    <p class="eyebrow eyebrow--sage">
+      <time datetime="{{ page.date | htmlDatum }}">{{ page.date | datumNl }}</time>
+    </p>
+    <h1 class="ruled">{{ title }}</h1>
+    {% if description %}<p class="lead">{{ description }}</p>{% endif %}
+    <p class="meta">{{ content | leestijd }} min lezen</p>
+  </header>
+
+  <div class="post-body">{{ content | safe }}</div>
+
+  <footer class="post-footer">
+    {% set tagSlugs = tags | tagsVanPost %}
+    {% if tagSlugs.length %}
+      <ul class="taglist">
+        {% for slug in tagSlugs %}
+          <li><a class="tag" href="/tags/{{ slug }}/">{{ slug | tagLabel }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {#- Eleventy ships these filters; posts are sorted newest-first, so the
+        previous item in the array is the newer post. -#}
+    {%- set newer = collections.posts | getPreviousCollectionItem(page) -%}
+    {%- set older = collections.posts | getNextCollectionItem(page) -%}
+    {% if newer or older %}
+      <nav class="post-nav" aria-label="Meer berichten">
+        {% if older %}
+          <div class="post-nav__item">
+            <span class="post-nav__label">Vorige</span>
+            <a href="{{ older.url }}">{{ older.data.title }}</a>
+          </div>
+        {% endif %}
+        {% if newer %}
+          <div class="post-nav__item post-nav__item--next">
+            <span class="post-nav__label">Volgende</span>
+            <a href="{{ newer.url }}">{{ newer.data.title }}</a>
+          </div>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </footer>
+</article>

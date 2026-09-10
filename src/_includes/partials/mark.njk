@@ -1,0 +1,22 @@
+{#
+  The house mark: the botanical bloom from the ldr Slidev theme
+  (docs/theme-mockup.html). Petals take currentColor so it inherits the
+  surrounding text colour; the seed stays maple, and the stems stay sage.
+  Pass `size` in px. Decorative, so it is hidden from assistive tech.
+#}
+<svg class="mark" width="{{ size | default(34) }}" height="{{ size | default(34) }}"
+     viewBox="70 95 160 255" fill="none" aria-hidden="true" focusable="false">
+  <g stroke="#7E9A7C" stroke-width="9" fill="none" stroke-linecap="round">
+    <path d="M150 345 C150 290 150 235 150 168" />
+    <path d="M150 280 C112 258 88 240 84 208 C120 214 142 238 150 272" />
+    <path d="M150 240 C188 218 212 200 216 168 C180 174 160 198 150 232" />
+  </g>
+  <g fill="currentColor">
+    <ellipse cx="150" cy="150" rx="18" ry="30" />
+    <ellipse cx="120" cy="170" rx="16" ry="26" transform="rotate(-32 120 170)" />
+    <ellipse cx="180" cy="170" rx="16" ry="26" transform="rotate(32 180 170)" />
+    <ellipse cx="126" cy="132" rx="16" ry="26" transform="rotate(-60 126 132)" />
+    <ellipse cx="174" cy="132" rx="16" ry="26" transform="rotate(60 174 132)" />
+  </g>
+  <circle cx="150" cy="158" r="14" fill="#9E3B2D" />
+</svg>

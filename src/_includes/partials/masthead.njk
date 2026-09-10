@@ -1,0 +1,18 @@
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="masthead__brand" href="/">
+      {% include "partials/mark.njk" %}
+      <span>{{ site.title }}</span>
+    </a>
+    <nav class="masthead__nav" aria-label="Hoofdnavigatie">
+      {% for item in site.nav %}
+        {#- A section is current when the URL sits inside it, so a post
+            still marks "Blog" as the section you are reading. -#}
+        <a
+          href="{{ item.url }}"
+          {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}aria-current="page"{% endif %}
+        >{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
