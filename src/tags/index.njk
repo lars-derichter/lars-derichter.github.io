@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Onderwerpen
+description: De onderwerpen waarover ik schrijf.
+permalink: /tags/
+---
+{% block content %}
+  <div class="prose">
+    <h1 class="ruled">Onderwerpen</h1>
+    <p class="lead">{{ description }}</p>
+  </div>
+
+  <ul class="tag-cards">
+    {% for tag in topics %}
+      <li>
+        <h2><a href="/tags/{{ tag.slug }}/">{{ tag.label }}</a></h2>
+        <p>{{ tag.description }}</p>
+        {% set count = collections.posts | postsMetTag(tag.slug) | length %}
+        <p class="meta">{{ count }} {{ "bericht" if count == 1 else "berichten" }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

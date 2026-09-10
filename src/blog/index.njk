@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Blog
+description: Alle berichten, van nieuw naar oud.
+permalink: /blog/
+---
+{% block content %}
+  <div class="prose">
+    <h1 class="ruled">Blog</h1>
+    <p class="lead">Alle berichten, van nieuw naar oud.</p>
+  </div>
+
+  {% set posts = collections.posts %}
+  {% include "partials/post-list.njk" %}
+{% endblock %}

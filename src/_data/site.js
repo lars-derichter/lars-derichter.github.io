@@ -5,8 +5,7 @@
  */
 export default {
   title: 'Avonturen in AI-Land',
-  description:
-    'Mijn blog over AI, (hoger) onderwijs en de combinatie daarvan.',
+  description: 'Mijn blog over AI, (hoger) onderwijs en de combinatie daarvan.',
   // No trailing slash: templates add one. This is a GitHub user-pages repo,
   // so the site serves from the domain root and needs no path prefix.
   url: 'https://lars-derichter.github.io',

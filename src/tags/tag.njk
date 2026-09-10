@@ -1,0 +1,27 @@
+---
+layout: base.njk
+pagination:
+  data: topics
+  size: 1
+  alias: tag
+  # Without this only the first tag page joins collections.all, and the
+  # sitemap would list /tags/ai/ but neither of the others.
+  addAllPagesToCollections: true
+permalink: "/tags/{{ tag.slug }}/"
+eleventyComputed:
+  title: "{{ tag.label }}"
+  description: "{{ tag.description }}"
+---
+{% block content %}
+  <div class="prose">
+    <p class="eyebrow eyebrow--sage">Onderwerp</p>
+    <h1 class="ruled">{{ tag.label }}</h1>
+    <p class="lead">{{ tag.description }}</p>
+  </div>
+
+  {% set posts = collections.posts | postsMetTag(tag.slug) %}
+  {% set showTags = false %}
+  {% include "partials/post-list.njk" %}
+
+  <p><a href="/tags/">Alle onderwerpen</a></p>
+{% endblock %}

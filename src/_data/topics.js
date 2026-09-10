@@ -3,6 +3,10 @@
  * exist. src/tags/tag.njk paginates over this list, so adding a topic is
  * one entry here plus using its slug in a post's frontmatter.
  *
+ * NOT named tags.js on purpose: a global data file called `tags` shadows
+ * Eleventy's own `tags` frontmatter key, and every page would then read the
+ * topic list as its own tags. The URLs stay /tags/ regardless.
+ *
  * The slug is what you write in frontmatter and what appears in the URL;
  * the label is what readers see, which is why "ai-onderwijs" can display
  * as "AI+onderwijs".

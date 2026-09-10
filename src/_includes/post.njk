@@ -12,7 +12,7 @@ layout: base.njk
     </p>
     <h1 class="ruled">{{ title }}</h1>
     {% if description %}<p class="lead">{{ description }}</p>{% endif %}
-    <p class="meta">{{ content | leestijd }} min lezen</p>
+    <p class="meta">{{ leestijd | leestijd }} min lezen</p>
   </header>
 
   <div class="post-body">{{ content | safe }}</div>
