@@ -7,13 +7,22 @@
  * numbers, muted italic comments, on the panel ground with a sage spine.
  */
 
-/* Two colours that live only in code and have no palette token: the
-   sage-ink used for type names, and the muted grey for punctuation. */
+/* Code-only colours, darkened from the Shiki theme's values.
+ *
+ * On a slide, code is projected large and read for a few seconds; here it
+ * is 0.9rem and read at length, so WCAG asks 4.5:1 against the panel and
+ * the slide values do not reach it: comments 2.5:1, numbers 2.9:1, types
+ * 4.3:1, punctuation 4.4:1. These are the same hues, darkened until they
+ * pass with margin. Measured ratios are in the comment on each line.
+ * Keywords (forest 6.6:1), strings (maple 5.3:1) and identifiers (ink
+ * 11.5:1) already pass, so they keep the palette tokens unchanged.
+ */
 :root {
-  --ldr-code-type: #5e6e58;
-  --ldr-code-punct: #6e685b;
-  --ldr-code-comment: #9a917c;
-  --ldr-code-linenum: #b7ac90;
+  --ldr-code-type: #4c5c48; /* 5.66:1 — was #5e6e58 */
+  --ldr-code-punct: #5c5749; /* 5.69:1 — was #6e685b */
+  --ldr-code-comment: #696351; /* 4.73:1 — was #9a917c */
+  --ldr-code-number: #835c1f; /* 4.72:1 — was ochre #b07d2b */
+  --ldr-code-linenum: #6f6a5b; /* readable, was #b7ac90 */
 }
 
 pre[class*='language-'],
@@ -92,7 +101,7 @@ pre[class*='language-'] {
 .token.boolean,
 .token.constant,
 .token.symbol {
-  color: var(--ldr-ochre);
+  color: var(--ldr-code-number);
 }
 
 .token.class-name,

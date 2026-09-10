@@ -7,9 +7,10 @@
     {% for post in posts %}
       <li>
         <p class="meta">
-          <time datetime="{{ post.date | htmlDatum }}">{{ post.date | datumNl }}</time>
-          <span class="meta__sep" aria-hidden="true">·</span>
-          {{ post.data.leestijd | leestijd }} min lezen
+          <span class="meta__item">
+            <time datetime="{{ post.date | htmlDatum }}">{{ post.date | datumNl }}</time>
+          </span>
+          <span class="meta__item">{{ post.data.leestijd | leestijd }} min lezen</span>
         </p>
         <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
         {% if post.data.description %}

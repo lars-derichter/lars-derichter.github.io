@@ -379,8 +379,12 @@ figcaption {
 
 /* Text roles -------------------------------------------------------------- */
 
-/* Eyebrow / kicker: the signature label. Forest as a section kicker, sage
-   when it labels content or a figure. */
+/* Eyebrow / kicker: the signature label.
+   The slide theme has a sage variant for labelling content rather than
+   kicking off a section. There is no sage variant here: at 0.8rem the
+   eyebrow is not large text, so WCAG asks 4.5:1 and sage on warm white
+   gives 2.9:1 — and on a post the eyebrow carries the date, which is
+   information. Forest reaches 9.3:1. See docs/theme.md. */
 .eyebrow {
   font-size: 0.8rem;
   letter-spacing: 0.26em;
@@ -390,9 +394,6 @@ figcaption {
   margin: 0 0 var(--ldr-space-2);
 }
 
-.eyebrow--sage {
-  color: var(--ldr-sage);
-}
 
 .lead {
   font-style: italic;
@@ -422,7 +423,11 @@ figcaption {
   color: inherit;
 }
 
-.meta__sep {
+/* The separator is drawn by CSS, not written into the markup: it is
+   presentational, so a screenreader should never reach it and the
+   text-contrast rule does not apply to it. */
+.meta__item + .meta__item::before {
+  content: '·';
   color: var(--ldr-sage);
   padding-inline: 0.5em;
 }
@@ -710,12 +715,14 @@ figcaption {
   text-align: right;
 }
 
+/* Forest, not sage: a 0.75rem label is not large text, and this one says
+   which way the link goes. Same reasoning as .eyebrow. */
 .post-nav__label {
   display: block;
   font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ldr-sage);
+  color: var(--ldr-forest);
   font-weight: 700;
   margin-bottom: 0.2em;
 }
